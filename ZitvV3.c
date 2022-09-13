@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-
+#include <time.h>
+#include <stdlib.h>
 #define NT 4
 #define NS 10
 #define LenNomeSquadra 20
 #define O 20
-
 typedef struct
 {
     char nomeSquadra[LenNomeSquadra];
@@ -39,24 +39,23 @@ int main()
     strcpy(Squadre[17].nomeSquadra, "Cremonese");
     strcpy(Squadre[18].nomeSquadra, "Sambdoria");
     strcpy(Squadre[19].nomeSquadra, "Monza1");
-    for(int i = 0; i < sizeof(Squadre)/sizeof(TpSquadra); i++)
+    for (int i = 0; i < sizeof(Squadre) / sizeof(TpSquadra); i++)
         Squadre[i].girone = 0;
 
-    for(int i = 0; i < sizeof(Squadre)/sizeof(TpSquadra); i++)
+    for (int i = 0; i < sizeof(Squadre) / sizeof(TpSquadra); i++)
     {
-        unsigned girone = (rand()%4) + 1;
+        unsigned girone = (rand() % 4) + 1;
         unsigned count = 0;
         int j = 0;
-
         while (j < i)
-        {   
+        {
             if (Squadre[j].girone == girone)
             {
                 count++;
 
                 if (count == 5)
                 {
-                    girone = (rand()%4) + 1;
+                    girone = (rand() % 4) + 1;
                     count = 0;
                     j = 0;
                     continue;
@@ -64,15 +63,13 @@ int main()
             }
             j++;
         }
-
         Squadre[i].girone = girone;
     }
-
     for (int j = 1; j < 5; j++)
     {
         printf("\nGirone %u:\n", j);
-        for (int i = 0; i < sizeof(Squadre)/sizeof(TpSquadra); i++)
-        {   
+        for (int i = 0; i < sizeof(Squadre) / sizeof(TpSquadra); i++)
+        {
             if (Squadre[i].girone == j)
                 printf("%s\n", Squadre[i].nomeSquadra);
         }
